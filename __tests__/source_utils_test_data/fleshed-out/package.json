@@ -1,0 +1,10 @@
+{
+  "name": "foo-bar",
+  "version": "1.0.2",
+  "other": "value",
+  "more": [
+    "stuff",
+    "in here"
+  ],
+  "numbers are cool": 2
+}
