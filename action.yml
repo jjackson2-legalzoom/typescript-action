@@ -1,24 +1,83 @@
-name: 'The name of your action here'
+name: 'Version Bump'
 description: 'Provide a description here'
-author: 'Your name or organization here'
-
-# Add your action's branding here. This will appear on the GitHub Marketplace.
-branding:
-  icon: 'heart'
-  color: 'red'
-
-# Define your inputs here.
-inputs:
-  milliseconds:
-    description: 'Your input description here'
-    required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: 'Your output description here'
+author: 'SRE Team'
 
 runs:
   using: node20
   main: dist/index.js
+
+branding:
+  icon: chevron-up
+  color: blue
+
+inputs:
+  tag-prefix:
+    description: 'Prefix that is used for the git tag'
+    default: 'v'
+    required: false
+  tag-suffix:
+    description: 'Suffix that is used for the git tag'
+    default: ''
+    required: false
+  version-type:
+    description: 'Overrides version type from commit message'
+    default: ''
+    required: false
+  minor-wording:
+    description: 'Words list that trigger a minor version bump'
+    default: 'FEATURE,MINOR'
+    required: false
+  major-wording:
+    description: 'Words list that trigger a major version bump'
+    default: 'BREAKING CHANGE,MAJOR'
+    required: false
+  patch-wording:
+    description: 'Words list that trigger a patch version bump'
+    required: false
+  rc-wording:
+    description: 'Words list that trigger a rc version bump'
+    default: 'pre-alpha,pre-beta,pre-rc'
+    required: false
+  skip-tag:
+    description: 'Avoid to add a TAG to the version update commit'
+    default: 'false'
+    required: false
+  skip-commit:
+    description: 'Avoid to add a commit after the version is bumped'
+    default: 'false'
+    required: false
+  skip-push:
+    description: 'If true, skip pushing any commits or tags created after the version bump'
+    default: false
+    required: false
+  PACKAGEJSON_DIR:
+    description: 'Custom dir to the package'
+    default: ''
+    required: false
+  target-branch:
+    description: 'A separate branch to perform the version bump on'
+    default: ''
+    required: false
+  default:
+    description: 'Set a default version bump to use'
+    default: 'patch'
+    required: false
+  preid:
+    description: 'Set a custom preid for prerelease build'
+    default: 'rc'
+    required: false
+  commit-message:
+    description: 'Set a custom commit message for version bump commit'
+    default: ''
+    required: false
+  bump-policy:
+    description: 'Set version bump ignore policy'
+    default: 'all'
+    required: false
+  push:
+    description: '[DEPRECATED] Set to false to skip pushing the new tag'
+    default: 'true'
+    required: false
+outputs:
+  newTag:
+    description: 'The newly created tag'

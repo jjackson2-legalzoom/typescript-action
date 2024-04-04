@@ -1,3 +1,39 @@
+# What is this?
+
+This repo implements the logic defined in
+[this RFC](https://legalzoom.atlassian.net/wiki/spaces/SRE/pages/3260678386/RFC+Amendment+to+Version+Bump+Logic),
+which:
+
+- When triggered on a PR, ensures that the PR (if it targets the default branch)
+  has a version that is appropriately bumped relative to the default branch.
+- When triggered by a merge to the default branch, update the versions of all
+  PRs that are
+
+# Why is this a separate repo rather than a directory of [gha-workflows](https://github.legalzoom.com/engineering/gha-workflows/)?
+
+We've been repeatedly bitten by how tricky development is made by monorepos. Why
+inflict that pain on ourselves even further?
+
+(Note that I'm not advocating for abandoning
+[that repo](https://github.legalzoom.com/engineering/gha-workflows/) entirely -
+it is a great place to store the `.github/workflows/*.yaml` files that act as an
+index for customers looking for workflows to use. The code for
+[custom actions](https://docs.github.com/en/enterprise-server@3.12/actions/creating-actions/about-custom-actions),
+however, more properly belongs in standalone repos with their own dependencies,
+CI, and so on)
+
+# Test cases
+
+TODO list - this should not be present in the eventual commit being PR'd.
+
+- Open a PR and check that bump happens, for each of Major/Minor/Patch
+- Ensure that an open PR is correctly bumped when there is an update to `main`
+  while it's still open
+- ...others?
+
+(This repo was created from
+[a template](https://github.com/actions/typescript-action))
+
 # Create a GitHub Action Using TypeScript
 
 [![GitHub Super-Linter](https://github.com/actions/typescript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
@@ -24,12 +60,6 @@ follow the below instructions:
 1. Select an owner and name for your new repository
 1. Click **Create repository**
 1. Clone your new repository
-
-> [!IMPORTANT]
->
-> Make sure to remove or update the [`CODEOWNERS`](./CODEOWNERS) file! For
-> details on how to use this file, see
-> [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
 
 ## Initial Setup
 
